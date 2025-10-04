@@ -1,5 +1,48 @@
-# Node.js dependencies
-node_modules
+# ========================
+# Node.js and JavaScript
+# ========================
 
-# Environment variables
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# Environment files
 .env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
+coverage/
+tmp/
+temp/
+
+# Logs
+logs
+*.log
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Optional: TypeScript build cache
+*.tsbuildinfo
+
+# Optional: lock files (if using multiple package managers)
+pnpm-lock.yaml
+yarn.lock
+
+# Optional: test coverage reports
+coverage/
