@@ -1,0 +1,16 @@
+REST API - JSON
+
+GET /users - get list of all users - DONE
+
+GET /api/users/1 - get user with id 1 - DONE
+GET /api/users/2 - get user with id 2 - DONE
+
+DYNAMIC ID
+GET /api/users/:id
+
+POST /api/users - create new user
+
+PUT/PATCH /api/users/1 - edit user with id 1
+
+DELETE /api/users/1 - delete user with id
+
