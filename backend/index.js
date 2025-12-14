@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const mongoose = require("mongoose");
-const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 require("dotenv").config();
 
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.send("Server working perfectly fine as hell"));
 
 // user routes
-app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // project routes
 app.use("/api/project", projectRoutes);

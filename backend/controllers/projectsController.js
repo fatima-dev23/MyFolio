@@ -15,12 +15,15 @@ const createProject = async (req, res) => {
     console.log("📩 req.body:", req.body);
 
     const { title, description, tech, links, image } = req.body;
-
+    const techArray = Array.isArray(tech) ? tech : [tech];
     if (!title || !description) {
       return res.status(400).json({ status: "error", message: "title and description required" });
     }
-
-    const newProject = new Projects({ title, description, tech, links, image });
+    if (links && typeof links !== "object") {
+      return res.status(400).json({ status: "error", message: "links must be an object" });
+    }
+    const newProject = new Projects({ title, description,   tech: techArray, links, image });
+    
     await newProject.save();
 
     res.status(201).json({ status: "success", project: newProject });
@@ -32,13 +35,23 @@ const createProject = async (req, res) => {
 
 const updateProjects = async (req, res) => {
   try {
-    const { title, description, tech, links, image } = req.body;
+    if (Object.keys(req.body).length === 0) {
+      return res.status(400).json({ status: "error", message: "No data provided" });
+    }
 
+    const { title, description, tech, links, image } = req.body;
+    const techArray = Array.isArray(tech) ? tech : [tech];
+
+    if (links && typeof links !== "object") {
+      return res.status(400).json({ status: "error", message: "links must be an object" });
+    }
     const updatedProjects = await Projects.findByIdAndUpdate(
       req.params.id,
-      { title, description, tech, links, image },
+      { title, description, tech: techArray, links, image },
       { new: true, runValidators: true }
     );
+
+    
 
     if (!updatedProjects) {
       return res.status(404).json({ status: "fail", message: "Project not found" });
