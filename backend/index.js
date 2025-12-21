@@ -27,6 +27,9 @@ app.get("/", (req, res) => res.send("Server working perfectly fine as hell"));
 // user routes
 app.use("/api/auth", authRoutes);
 
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/user", userRoutes);
+
 // project routes
 app.use("/api/project", projectRoutes);
 
