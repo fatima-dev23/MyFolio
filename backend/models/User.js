@@ -8,8 +8,8 @@ const userSchema = new mongoose.Schema({
 
   // 👩‍💻 PORTFOLIO
   profile: {
-    full_name: { type: String },
-    bio: { type: String },
+    full_name: { type: String, required: true },
+    bio: { type: String, required: true },
     profile_picture: { type: String },
     social_links: { type: Map, of: String },
     contact: { type: String }

@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = 8000;
 const mongoose = require("mongoose");
-const authRoutes = require("./routes/authRoutes");
-const projectRoutes = require("./routes/projectRoutes");
+const authRoutes = require("./routes/authRoutes.js");
+const projectRoutes = require("./routes/projectRoutes.js");
+const experienceRoutes = require("./routes/experienceRoutes.js")
 require("dotenv").config();
 
 // DATABASE CONNECTION
@@ -32,6 +33,9 @@ app.use("/api/user", userRoutes);
 
 // project routes
 app.use("/api/project", projectRoutes);
+
+// experience routes
+app.use("/api/experience", experienceRoutes)
 
 // NOTE: removed the direct User endpoints that referenced `User` without importing it.
 // If you want them back in index.js, add:

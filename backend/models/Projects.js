@@ -5,13 +5,13 @@ const projectSchema = new mongoose.Schema({
     description: { type: String, required: true },
     tech: { type: [String], required: true },
     links: {
-    github: { type: String },
-    live: { type: String },
-    figma: { type: String }
+    github: { type: String, default: ""},
+    live: { type: String, default: ""},
+    figma: { type: String, default: "" }
   },
     image: { type: String, required: false },
     createdAt: { type: Date, default: Date.now },
 })
 
-const Projects = mongoose.model("Projects", projectSchema);
-module.exports = Projects;
+const Project = mongoose.model("Project", projectSchema);
+module.exports = Project;

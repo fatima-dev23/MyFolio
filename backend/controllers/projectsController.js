@@ -15,7 +15,7 @@ const createProject = async (req, res) => {
     console.log("📩 req.body:", req.body);
 
     const { title, description, tech, links, image } = req.body;
-    const techArray = Array.isArray(tech) ? tech : [tech];
+    const techArray = Array.isArray(tech) ? tech : (tech ? [tech] : []);
     if (!title || !description) {
       return res.status(400).json({ status: "error", message: "title and description required" });
     }
@@ -40,7 +40,7 @@ const updateProjects = async (req, res) => {
     }
 
     const { title, description, tech, links, image } = req.body;
-    const techArray = Array.isArray(tech) ? tech : [tech];
+    const techArray = Array.isArray(tech) ? tech : (tech ? [tech] : []);
 
     if (links && typeof links !== "object") {
       return res.status(400).json({ status: "error", message: "links must be an object" });
@@ -65,14 +65,6 @@ const updateProjects = async (req, res) => {
 };
 
 module.exports = { getProjects, createProject, updateProjects };
-// Update project by ID
-
-// app.put("/api/projects/:id", async (req, res) => {
-//   try {
-//     const updatedProject = await Projects.findByIdAndUpdate(
-//       req.params.id,
-//       req.body,
-//       { new: true, runValidators: true }
 
 
 
