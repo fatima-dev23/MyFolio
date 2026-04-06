@@ -4,15 +4,14 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 const CustomCursor = () => {
   const cursorRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
-
+  
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
+  
   const springConfig = { damping: 25, stiffness: 400 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
-  // Trail cursors
   const trailX1 = useSpring(mouseX, { damping: 30, stiffness: 200 });
   const trailY1 = useSpring(mouseY, { damping: 30, stiffness: 200 });
   const trailX2 = useSpring(mouseX, { damping: 35, stiffness: 150 });
@@ -28,9 +27,7 @@ const CustomCursor = () => {
 
     const handleMouseOver = (e) => {
       const target = e.target;
-      const isClickable = target.closest(
-        'a, button, [role="button"], .cursor-pointer, .glass-card, .project-card'
-      );
+      const isClickable = target.closest('a, button, [role="button"], .cursor-pointer, .glass-card, .project-card');
       setIsHovering(!!isClickable);
     };
 
@@ -45,9 +42,8 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Trail cursors */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[9997] rounded-full bg-primary/20"
+        className="pointer-events-none fixed left-0 top-0 z-9997 rounded-full bg-primary/20"
         style={{
           x: trailX3,
           y: trailY3,
@@ -58,7 +54,7 @@ const CustomCursor = () => {
         }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full bg-primary/40"
+        className="pointer-events-none fixed left-0 top-0 z-9998 rounded-full bg-primary/40"
         style={{
           x: trailX2,
           y: trailY2,
@@ -69,7 +65,7 @@ const CustomCursor = () => {
         }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-primary/60"
+        className="pointer-events-none fixed left-0 top-0 z-9999 rounded-full bg-primary/60"
         style={{
           x: trailX1,
           y: trailY1,
@@ -79,11 +75,9 @@ const CustomCursor = () => {
           translateY: '-50%',
         }}
       />
-
-      {/* Main cursor */}
       <motion.div
         ref={cursorRef}
-        className="pointer-events-none fixed left-0 top-0 z-[10000] flex items-center justify-center"
+        className="pointer-events-none fixed left-0 top-0 z-10000 flex items-center justify-center"
         style={{
           x: cursorX,
           y: cursorY,
@@ -96,20 +90,16 @@ const CustomCursor = () => {
           animate={{
             width: isHovering ? 60 : 20,
             height: isHovering ? 60 : 20,
-            backgroundColor: isHovering
-              ? 'hsl(357 93% 47% / 0.1)'
-              : 'transparent',
+            backgroundColor: isHovering ? 'hsl(357 93% 47% / 0.1)' : 'transparent',
             borderWidth: isHovering ? 1 : 2,
           }}
           transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           style={{
-            boxShadow: isHovering
+            boxShadow: isHovering 
               ? '0 0 20px hsl(357 93% 47% / 0.6), 0 0 40px hsl(357 93% 47% / 0.3)'
               : '0 0 10px hsl(357 93% 47% / 0.4)',
           }}
         />
-
-        {/* Center dot */}
         <motion.div
           className="absolute rounded-full bg-primary"
           animate={{
